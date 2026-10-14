@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../services/api_client.dart';
 import '../services/owner_api.dart';
 import '../services/token_storage.dart';
+import 'employee/employee_list_screen.dart';
 import 'login_screen.dart';
 import 'owner_profile_screen.dart';
 
@@ -148,6 +149,14 @@ class _OwnerDashboardScreenState extends State<OwnerDashboardScreen> {
     if (confirmed == true && mounted) {
       await _logout();
     }
+  }
+
+  void _openEmployees() {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => EmployeeListScreen(token: widget.token),
+      ),
+    );
   }
 
   void _showComingSoon(String section) {
@@ -376,7 +385,7 @@ class _OwnerDashboardScreenState extends State<OwnerDashboardScreen> {
                               icon: Icons.people_outline,
                               title: 'Employees',
                               description: 'Employee management',
-                              onTap: () => _showComingSoon('Employees'),
+                              onTap: _openEmployees,
                             ),
                           ),
                           const SizedBox(width: 12),
