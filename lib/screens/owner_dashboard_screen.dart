@@ -6,6 +6,7 @@ import '../services/token_storage.dart';
 import 'employee/employee_list_screen.dart';
 import 'login_screen.dart';
 import 'owner_profile_screen.dart';
+import 'attendance/attendance_screen.dart';
 
 class OwnerDashboardScreen extends StatefulWidget {
   const OwnerDashboardScreen({super.key, required this.token});
@@ -394,7 +395,14 @@ class _OwnerDashboardScreenState extends State<OwnerDashboardScreen> {
                               icon: Icons.fact_check_outlined,
                               title: 'Attendance',
                               description: 'Track employee attendance',
-                              onTap: () => _showComingSoon('Attendance'),
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute<void>(
+                                    builder: (_) =>
+                                        AttendanceScreen(token: widget.token),
+                                  ),
+                                );
+                              },
                             ),
                           ),
                         ],

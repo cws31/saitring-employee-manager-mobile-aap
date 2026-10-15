@@ -13,4 +13,14 @@ class ApiConfig {
   static String employeeById(int id) => '$employees/$id';
 
   static String employeeToggleBlock(int id) => '$employees/$id/toggle-block';
+
+  static const String attendance = '/api/attendance';
+
+  static String attendanceEmployee(int employeeId) =>
+      '$attendance/employee/$employeeId';
+
+  static const String attendanceBulk = '$attendance/bulk';
+  static const String attendanceMonth = '$attendance/month';
+  static const String attendanceDailySummary = '$attendance/summary/day';
+  static const String attendanceMonthlySummary = '$attendance/summary/month';
 }

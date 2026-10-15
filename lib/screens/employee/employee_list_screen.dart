@@ -4,6 +4,7 @@ import '../../models/employee/employee.dart';
 import '../../services/api_client.dart';
 import '../../services/employee/employee_api.dart';
 import '../../services/token_storage.dart';
+import '../attendance/employee_attendance_history_screen.dart';
 import 'employee_details_screen.dart';
 import 'employee_form_screen.dart';
 
@@ -170,6 +171,17 @@ class _EmployeeListScreenState extends State<EmployeeListScreen> {
     if (changed == true && mounted) {
       await _loadEmployees();
     }
+  }
+
+  Future<void> _openEmployeeAttendanceHistory(Employee employee) async {
+    await Navigator.of(context).push<void>(
+      MaterialPageRoute<void>(
+        builder: (_) => EmployeeAttendanceHistoryScreen(
+          token: widget.token,
+          employee: employee,
+        ),
+      ),
+    );
   }
 
   String _formatAmount(double amount) {
@@ -377,7 +389,13 @@ class _EmployeeListScreenState extends State<EmployeeListScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 4),
+                  IconButton(
+                    tooltip: 'View attendance history',
+                    visualDensity: VisualDensity.compact,
+                    onPressed: () => _openEmployeeAttendanceHistory(employee),
+                    icon: const Icon(Icons.history, color: Color(0xFF2457C5)),
+                  ),
                   const Icon(
                     Icons.chevron_right,
                     color: Color(0xFF98A2B3),
